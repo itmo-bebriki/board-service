@@ -12,7 +12,7 @@ internal sealed class TableTopicTasksMigration : SqlMigration
         return
         """
         create table topic_tasks (
-            topic_id bigint not null references topics(board_id) on delete cascade,
+            topic_id bigint not null references topics(topic_id) on delete cascade,
             task_id bigint not null,
         
             primary key (topic_id, task_id)
