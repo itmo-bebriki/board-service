@@ -1,5 +1,8 @@
 using Itmo.Bebriki.Boards.Application.Abstractions.Persistence;
+using Itmo.Bebriki.Boards.Application.Abstractions.Persistence.Repositories.Boards;
+using Itmo.Bebriki.Boards.Application.Abstractions.Persistence.Repositories.Topics;
 using Itmo.Bebriki.Boards.Infrastructure.Persistence.Plugins;
+using Itmo.Bebriki.Boards.Infrastructure.Persistence.Repositories;
 using Itmo.Dev.Platform.Persistence.Abstractions.Extensions;
 using Itmo.Dev.Platform.Persistence.Postgres.Extensions;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,8 +19,10 @@ public static class ServiceCollectionExtensions
                 .WithMigrationsFrom(typeof(IAssemblyMarker).Assembly)
                 .WithDataSourcePlugin<MappingPlugin>()));
 
-        // TODO: add repositories
         collection.AddScoped<IPersistenceContext, PersistenceContext>();
+
+        collection.AddSingleton<IBoardRepository, BoardRepository>();
+        collection.AddSingleton<ITopicRepository, TopicRepository>();
 
         return collection;
     }
