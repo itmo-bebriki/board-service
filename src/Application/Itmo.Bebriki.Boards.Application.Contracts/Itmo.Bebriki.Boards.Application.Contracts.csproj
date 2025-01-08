@@ -8,8 +8,4 @@
       <PackageReference Include="Itmo.Dev.Platform.Events" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Exceptions\" />
-    </ItemGroup>
-
 </Project>

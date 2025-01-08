@@ -5,4 +5,4 @@ public sealed record TopicDto(
     string Name,
     string Description,
     IReadOnlySet<long> TaskIds,
-    DateTime UpdatedAt);
+    DateTimeOffset UpdatedAt);
