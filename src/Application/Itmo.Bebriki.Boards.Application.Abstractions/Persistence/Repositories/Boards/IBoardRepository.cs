@@ -10,7 +10,7 @@ public interface IBoardRepository
         CancellationToken cancellationToken);
 
     IAsyncEnumerable<long> AddAsync(
-        BoardQuery query,
+        IReadOnlyCollection<Board> boards,
         CancellationToken cancellationToken);
 
     Task UpdateAsync(
