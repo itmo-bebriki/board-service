@@ -6,7 +6,13 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Itmo.Dev.Platform.Common" />
+        <PackageReference Include="Itmo.Dev.Platform.Persistence.Postgres" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Converters\Topics\" />
     </ItemGroup>
 
 </Project>
