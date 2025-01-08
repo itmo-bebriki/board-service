@@ -8,7 +8,7 @@ public static class BoardFactory
         long id,
         string name,
         string description,
-        IReadOnlySet<long> topicIds,
+        IReadOnlyCollection<long> topicIds,
         DateTimeOffset updatedAt)
     {
         return new Board
@@ -16,7 +16,7 @@ public static class BoardFactory
             Id = id,
             Name = name,
             Description = description,
-            TopicIds = topicIds,
+            TopicIds = new HashSet<long>(topicIds),
             UpdatedAt = updatedAt,
         };
     }
