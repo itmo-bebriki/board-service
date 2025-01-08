@@ -5,7 +5,7 @@ namespace Itmo.Bebriki.Boards.Presentation.Grpc.Converters.Boards.Dtos;
 
 internal static class BoardDtoConverter
 {
-    internal static Itmo.Bebriki.Boards.Contracts.BoardDto FromInternal(BoardDto internalDto)
+    internal static Contracts.BoardDto FromInternal(BoardDto internalDto)
     {
         return new Contracts.BoardDto
         {
