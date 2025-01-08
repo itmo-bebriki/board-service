@@ -1,32 +1,73 @@
 using Grpc.Core;
+using Itmo.Bebriki.Boards.Application.Contracts.Boards;
+using Itmo.Bebriki.Boards.Application.Contracts.Boards.Commands;
+using Itmo.Bebriki.Boards.Application.Contracts.Boards.Dtos;
 using Itmo.Bebriki.Boards.Contracts;
+using Itmo.Bebriki.Boards.Presentation.Grpc.Converters.Boards.Requests;
+using Itmo.Bebriki.Boards.Presentation.Grpc.Converters.Boards.Responses;
 
 namespace Itmo.Bebriki.Boards.Presentation.Grpc.Controllers;
 
 public sealed class BoardController : BoardService.BoardServiceBase
 {
-    public override Task<QueryBoardResponse> QueryBoard(QueryBoardRequest request, ServerCallContext context)
+    private readonly IBoardService _boardService;
+
+    public BoardController(IBoardService boardService)
     {
-        return base.QueryBoard(request, context);
+        _boardService = boardService;
     }
 
-    public override Task<CreateBoardResponse> CreateBoard(CreateBoardRequest request, ServerCallContext context)
+    public override async Task<QueryBoardResponse> QueryBoard(QueryBoardRequest request, ServerCallContext context)
     {
-        return base.CreateBoard(request, context);
+        QueryBoardCommand internalCommand = QueryBoardRequestConverter.ToInternal(request);
+
+        PagedBoardDto internalResponse =
+            await _boardService.QueryBoardAsync(internalCommand, context.CancellationToken);
+
+        QueryBoardResponse response = QueryBoardResponseConverter.FromInternal(internalResponse);
+
+        return response;
     }
 
-    public override Task<UpdateBoardResponse> UpdateBoard(UpdateBoardRequest request, ServerCallContext context)
+    public override async Task<CreateBoardResponse> CreateBoard(CreateBoardRequest request, ServerCallContext context)
     {
-        return base.UpdateBoard(request, context);
+        CreateBoardCommand internalCommand = CreateBoardRequestConverter.ToInternal(request);
+
+        long internalResponse = await _boardService.CreateBoardAsync(internalCommand, context.CancellationToken);
+
+        CreateBoardResponse response = CreateBoardResponseConverter.FromInternal(internalResponse);
+
+        return response;
     }
 
-    public override Task<AddBoardTopicsResponse> AddBoardTopics(SetBoardTopicsRequest request, ServerCallContext context)
+    public override async Task<UpdateBoardResponse> UpdateBoard(UpdateBoardRequest request, ServerCallContext context)
     {
-        return base.AddBoardTopics(request, context);
+        UpdateBoardCommand internalCommand = UpdateBoardRequestConverter.ToInternal(request);
+
+        await _boardService.UpdateBoardAsync(internalCommand, context.CancellationToken);
+
+        return new UpdateBoardResponse();
     }
 
-    public override Task<RemoveBoardTopicsResponse> RemoveBoardTopics(SetBoardTopicsRequest request, ServerCallContext context)
+    public override async Task<AddBoardTopicsResponse> AddBoardTopics(
+        SetBoardTopicsRequest request,
+        ServerCallContext context)
     {
-        return base.RemoveBoardTopics(request, context);
+        SetBoardTopicsCommand internalCommand = SetBoardTopicsRequestConverter.ToInternal(request);
+
+        await _boardService.AddBoardTopicsAsync(internalCommand, context.CancellationToken);
+
+        return new AddBoardTopicsResponse();
+    }
+
+    public override async Task<RemoveBoardTopicsResponse> RemoveBoardTopics(
+        SetBoardTopicsRequest request,
+        ServerCallContext context)
+    {
+        SetBoardTopicsCommand internalCommand = SetBoardTopicsRequestConverter.ToInternal(request);
+
+        await _boardService.RemoveBoardTopicsAsync(internalCommand, context.CancellationToken);
+
+        return new RemoveBoardTopicsResponse();
     }
 }
