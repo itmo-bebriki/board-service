@@ -1,6 +1,11 @@
+using Itmo.Bebriki.Boards.Application.Abstractions.Persistence.Repositories.Boards;
+using Itmo.Bebriki.Boards.Application.Abstractions.Persistence.Repositories.Topics;
+
 namespace Itmo.Bebriki.Boards.Application.Abstractions.Persistence;
 
 public interface IPersistenceContext
 {
-    // TODO: add repository properties
+    IBoardRepository Boards { get; }
+
+    ITopicRepository Topics { get; }
 }
