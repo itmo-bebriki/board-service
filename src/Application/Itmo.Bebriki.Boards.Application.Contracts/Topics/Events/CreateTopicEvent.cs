@@ -1,3 +1,5 @@
+using Itmo.Dev.Platform.Events;
+
 namespace Itmo.Bebriki.Boards.Application.Contracts.Topics.Events;
 
 public sealed record CreateTopicEvent(
@@ -5,4 +7,4 @@ public sealed record CreateTopicEvent(
     string Name,
     string Description,
     IReadOnlySet<long> TaskIds,
-    DateTimeOffset CreatedAt);
+    DateTimeOffset CreatedAt) : IEvent;

@@ -134,7 +134,7 @@ public sealed class BoardService : IBoardService
         {
             _logger.LogError(
                 ex,
-                "Failed to update board. BoarId: {BoardId}, Updated Fields: {UpdatedFields}",
+                "Failed to update board. BoardId: {BoardId}, Updated Fields: {UpdatedFields}",
                 updatedBoard.Id,
                 GetUpdatedFields(command));
 
@@ -257,7 +257,7 @@ public sealed class BoardService : IBoardService
         {
             string missingTopicsMessage = string.Join(", ", missingTopicIds);
 
-            _logger.LogWarning("Topics with ids: {Ids} not found", missingTopicsMessage);
+            _logger.LogWarning("Topics with ids: {TopicIds} not found", missingTopicsMessage);
             throw new TopicNotFoundException($"Topics with ids {missingTopicsMessage} not found");
         }
     }

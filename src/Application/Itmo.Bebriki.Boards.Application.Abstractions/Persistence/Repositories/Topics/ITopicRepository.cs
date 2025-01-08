@@ -10,11 +10,11 @@ public interface ITopicRepository
         CancellationToken cancellationToken);
 
     IAsyncEnumerable<long> AddAsync(
-        TopicQuery query,
+        IReadOnlyCollection<Topic> query,
         CancellationToken cancellationToken);
 
     Task UpdateAsync(
-        IReadOnlyCollection<Topic> boards,
+        IReadOnlyCollection<Topic> topics,
         CancellationToken cancellationToken);
 
     Task AddTasksAsync(
