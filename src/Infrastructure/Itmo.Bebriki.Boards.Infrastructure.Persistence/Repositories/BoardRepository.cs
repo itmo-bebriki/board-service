@@ -104,7 +104,7 @@ internal sealed class BoardRepository : IBoardRepository
         await using IPersistenceCommand insertBoardsCommand = connection.CreateCommand(insertBoardsSql)
             .AddParameter("names", boards.Select(b => b.Name))
             .AddParameter("descriptions", boards.Select(b => b.Description))
-            .AddParameter("updated_at", boards.Select(b => b.UpdatedAt));
+            .AddParameter("updated_ats", boards.Select(b => b.UpdatedAt));
 
         var newBoardIds = new List<long>();
 

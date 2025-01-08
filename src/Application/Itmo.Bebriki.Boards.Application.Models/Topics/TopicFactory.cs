@@ -8,7 +8,7 @@ public static class TopicFactory
         long id,
         string name,
         string description,
-        IReadOnlySet<long> taskIds,
+        IReadOnlyCollection<long> taskIds,
         DateTimeOffset updatedAt)
     {
         return new Topic
@@ -16,7 +16,7 @@ public static class TopicFactory
             Id = id,
             Name = name,
             Description = description,
-            TaskIds = taskIds,
+            TaskIds = new HashSet<long>(taskIds),
             UpdatedAt = updatedAt,
         };
     }

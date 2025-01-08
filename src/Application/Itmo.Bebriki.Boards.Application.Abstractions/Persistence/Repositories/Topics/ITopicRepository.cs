@@ -10,7 +10,7 @@ public interface ITopicRepository
         CancellationToken cancellationToken);
 
     IAsyncEnumerable<long> AddAsync(
-        IReadOnlyCollection<Topic> query,
+        IReadOnlyCollection<Topic> topics,
         CancellationToken cancellationToken);
 
     Task UpdateAsync(
