@@ -23,11 +23,22 @@ public static class TopicFactory
 
     public static Topic CreateFromCreateContext(CreateTopicContext context)
     {
-        return new Topic();
+        return new Topic
+        {
+            Name = context.Name,
+            Description = context.Description,
+            TaskIds = context.TaskIds,
+            UpdatedAt = context.CreatedAt,
+        };
     }
 
     public static Topic CreateFromUpdateContext(UpdateTopicContext context)
     {
-        return new Topic();
+        return new Topic
+        {
+            Name = context.Name,
+            Description = context.Description,
+            UpdatedAt = context.UpdatedAt,
+        };
     }
 }
