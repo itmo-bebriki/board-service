@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option csharp_namespace = "Itmo.Bebriki.Boards.Contracts";
+
+package itmo.bebriki.boards;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+service BoardService {
+  rpc QueryBoard (QueryBoardRequest) returns (QueryBoardResponse);
+
+  rpc CreateBoard (CreateBoardRequest) returns (CreateBoardResponse);
+
+  rpc UpdateBoard (UpdateBoardRequest) returns (UpdateBoardResponse);
+
+  rpc AddBoardTopics (SetBoardTopicsRequest) returns (AddBoardTopicsResponse);
+
+  rpc RemoveBoardTopics (SetBoardTopicsRequest) returns (RemoveBoardTopicsResponse);
+}
+
+message QueryBoardRequest {
+  repeated int64 board_ids = 1;
+  google.protobuf.Timestamp from_updated_at = 2;
+  google.protobuf.Timestamp to_updated_at = 3;
+  google.protobuf.Int64Value cursor = 4;
+  int32 page_size = 5;
+}
+
+message CreateBoardRequest {
+  string name = 1;
+  string description = 2;
+  repeated int64 topic_ids = 3;
+}
+
+message UpdateBoardRequest {
+  int64 board_id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+}
+
+message SetBoardTopicsRequest {
+  int64 board_id = 1;
+  repeated int64 topic_ids = 2;
+}
+
+message QueryBoardResponse {
+  google.protobuf.Int64Value cursor = 1;
+  repeated BoardDto boards = 2;
+}
+
+message CreateBoardResponse {
+  int64 board_id = 1;
+}
+
+message UpdateBoardResponse { }
+
+message AddBoardTopicsResponse { }
+
+message RemoveBoardTopicsResponse { }
+
+message BoardDto {
+  int64 board_id = 1;
+  string name = 2;
+  string description = 3;
+  repeated int64 topic_ids = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}

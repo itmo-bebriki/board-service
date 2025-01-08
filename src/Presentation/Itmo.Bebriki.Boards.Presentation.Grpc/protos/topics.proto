@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option csharp_namespace = "Itmo.Bebriki.Topics.Contracts";
+
+package itmo.bebriki.topics;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+
+service TopicService {
+  rpc QueryTopic (QueryTopicRequest) returns (QueryTopicResponse);
+
+  rpc CreateTopic (CreateTopicRequest) returns (CreateTopicResponse);
+
+  rpc UpdateTopic (UpdateTopicRequest) returns (UpdateTopicResponse);
+
+  rpc AddTopicTasks (SetTopicTasksRequest) returns (AddTopicTasksResponse);
+
+  rpc RemoveTopicTasks (SetTopicTasksRequest) returns (RemoveTopicTasksResponse);
+}
+
+message QueryTopicRequest {
+  repeated int64 topic_ids = 1;
+  google.protobuf.Timestamp from_updated_at = 2;
+  google.protobuf.Timestamp to_updated_at = 3;
+  google.protobuf.Int64Value cursor = 4;
+  int32 page_size = 5;
+}
+
+message CreateTopicRequest {
+  string name = 1;
+  string description = 2;
+  repeated int64 task_ids = 3;
+}
+
+message UpdateTopicRequest {
+  int64 topic_id = 1;
+  google.protobuf.StringValue name = 2;
+  google.protobuf.StringValue description = 3;
+}
+
+message SetTopicTasksRequest {
+  int64 topic_id = 1;
+  repeated int64 task_ids = 2;
+}
+
+message QueryTopicResponse {
+  google.protobuf.Int64Value cursor = 1;
+  repeated TopicDto topics = 2;
+}
+
+message CreateTopicResponse {
+  int64 topic_id = 1;
+}
+
+message UpdateTopicResponse { }
+
+message AddTopicTasksResponse { }
+
+message RemoveTopicTasksResponse { }
+
+message TopicDto {
+  int64 topic_id = 1;
+  string name = 2;
+  string description = 3;
+  repeated int64 task_ids = 4;
+  google.protobuf.Timestamp updated_at = 5;
+}
