@@ -1,3 +1,4 @@
+using Itmo.Bebriki.Boards.Presentation.Grpc.Controllers;
 using Microsoft.AspNetCore.Builder;
 
 namespace Itmo.Bebriki.Boards.Presentation.Grpc.Extensions;
@@ -8,8 +9,8 @@ public static class ApplicationBuilderExtensions
     {
         builder.UseEndpoints(routeBuilder =>
         {
-            // TODO: add gRPC services implementation
-            // routeBuilder.MapGrpcService<Sample>();
+            routeBuilder.MapGrpcService<BoardController>();
+            routeBuilder.MapGrpcService<TopicController>();
             routeBuilder.MapGrpcReflectionService();
         });
 
