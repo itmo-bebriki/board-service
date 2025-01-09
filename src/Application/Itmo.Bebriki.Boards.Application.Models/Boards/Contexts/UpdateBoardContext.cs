@@ -4,4 +4,5 @@ public sealed record UpdateBoardContext(
     long BoardId,
     string Name,
     string Description,
+    IReadOnlySet<long> TopicIds,
     DateTimeOffset UpdatedAt);

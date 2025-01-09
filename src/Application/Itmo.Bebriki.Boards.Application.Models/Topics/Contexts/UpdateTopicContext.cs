@@ -4,4 +4,5 @@ public sealed record UpdateTopicContext(
     long TopicId,
     string Name,
     string Description,
+    IReadOnlySet<long> TaskIds,
     DateTimeOffset UpdatedAt);

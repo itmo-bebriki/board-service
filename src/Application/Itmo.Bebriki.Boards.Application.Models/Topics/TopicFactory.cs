@@ -39,6 +39,7 @@ public static class TopicFactory
             Id = context.TopicId,
             Name = context.Name,
             Description = context.Description,
+            TaskIds = context.TaskIds,
             UpdatedAt = context.UpdatedAt,
         };
     }

@@ -39,6 +39,7 @@ public static class BoardFactory
             Id = context.BoardId,
             Name = context.Name,
             Description = context.Description,
+            TopicIds = context.TopicIds,
             UpdatedAt = context.UpdatedAt,
         };
     }

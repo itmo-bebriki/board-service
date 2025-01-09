@@ -15,6 +15,7 @@ internal static class UpdateBoardCommandConverter
             BoardId: prevBoard.Id,
             Name: command.Name ?? prevBoard.Name,
             Description: command.Description ?? prevBoard.Description,
+            TopicIds: prevBoard.TopicIds,
             UpdatedAt: updatedAt);
     }
 }

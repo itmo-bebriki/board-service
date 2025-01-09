@@ -15,6 +15,7 @@ internal static class UpdateTopicCommandConverter
             TopicId: prevTopic.Id,
             Name: command.Name ?? prevTopic.Name,
             Description: command.Description ?? prevTopic.Description,
+            TaskIds: prevTopic.TaskIds,
             UpdatedAt: updatedAt);
     }
 }
