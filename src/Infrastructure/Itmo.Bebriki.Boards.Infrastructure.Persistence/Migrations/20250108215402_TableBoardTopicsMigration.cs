@@ -5,7 +5,7 @@ namespace Itmo.Bebriki.Boards.Infrastructure.Persistence.Migrations;
 
 #pragma warning disable SA1649
 [Migration(20250108215402, "table board_topics")]
-internal sealed class TableBoardTopicsMigration : SqlMigration
+public sealed class TableBoardTopicsMigration : SqlMigration
 {
     protected override string GetUpSql(IServiceProvider serviceProvider)
     {

@@ -195,7 +195,7 @@ internal sealed class TopicRepository : ITopicRepository
         """
         delete from topic_tasks as tt
         where tt.topic_id = :topic_id
-            or tt.task_id = any(:task_ids);
+            and tt.task_id = any(:task_ids);
         """;
 
         await using IPersistenceConnection connection = await _connectionProvider.GetConnectionAsync(cancellationToken);
