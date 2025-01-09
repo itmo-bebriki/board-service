@@ -36,6 +36,7 @@ public static class BoardFactory
     {
         return new Board
         {
+            Id = context.BoardId,
             Name = context.Name,
             Description = context.Description,
             UpdatedAt = context.UpdatedAt,

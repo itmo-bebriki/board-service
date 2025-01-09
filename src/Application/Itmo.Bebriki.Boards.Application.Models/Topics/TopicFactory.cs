@@ -36,6 +36,7 @@ public static class TopicFactory
     {
         return new Topic
         {
+            Id = context.TopicId,
             Name = context.Name,
             Description = context.Description,
             UpdatedAt = context.UpdatedAt,

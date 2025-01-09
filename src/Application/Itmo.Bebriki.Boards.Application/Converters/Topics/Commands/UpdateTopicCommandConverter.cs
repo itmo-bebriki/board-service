@@ -12,6 +12,7 @@ internal static class UpdateTopicCommandConverter
         DateTimeOffset updatedAt)
     {
         return new UpdateTopicContext(
+            TopicId: prevTopic.Id,
             Name: command.Name ?? prevTopic.Name,
             Description: command.Description ?? prevTopic.Description,
             UpdatedAt: updatedAt);
