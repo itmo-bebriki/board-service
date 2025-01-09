@@ -10,10 +10,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="protos\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\..\Application\Itmo.Bebriki.Boards.Application.Contracts\Itmo.Bebriki.Boards.Application.Contracts.csproj"/>
     </ItemGroup>
 
