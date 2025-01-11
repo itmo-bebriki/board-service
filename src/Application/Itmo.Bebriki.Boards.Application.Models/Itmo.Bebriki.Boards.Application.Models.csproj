@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <Compile Update="Topics\TopicFactory.cs">
+      <DependentUpon>Topic.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Boards\BoardFactory.cs">
+      <DependentUpon>Board.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
